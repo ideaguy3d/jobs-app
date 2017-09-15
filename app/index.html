@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>EdHub.co</title>
+	
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="description" content="The Education Jobs site">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	
+	<!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />-->
+	
+	<!-- build:css(.) styles/vendor.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+	<link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
+	
+	<!-- build:css(.tmp) styles/main.css -->
+	<link rel="stylesheet" href="styles/edhub.css">
+	<!-- endbuild -->
+	
+	<!-- ng-cloak -->
+	<style type="text/css">
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+	</style>
+</head>
+
+<body ng-app="edhubJobsApp" ng-cloak ng-controller="CoreCtrl">
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">
+	upgrade your browser</ato improve your experience.</p>
+<![endif]-->
+
+<md-nav-bar md-selected-nav-item="currentNavItem"
+            nav-bar-aria-label="navigation links">
+	<md-nav-item md-nav-sref="landing" name="home">
+		EdHub.co
+	</md-nav-item>
+	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
+		Post a Job
+	</md-nav-item>
+	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
+		Signup
+	</md-nav-item>
+	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
+		Login
+	</md-nav-item>
+	<md-subheader ng-if="ccCurrentUser" layout="column"><ng-md-icon icon="perm_identity"></ng-md-icon>{{ " Welcome " + ccCurrentUser }}</md-subheader>
+</md-nav-bar>
+
+<!-- application entry point -->
+<ui-view></ui-view>
+
+
+<!-- footer -->
+<br>
+<h1 class="text-center">Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a></h1>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    !function (A, n, g, u, l, a, r) {
+        A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+                (A[l].q = A[l].q || []).push(arguments)
+            }, A[l].l = +new Date, a = n.createElement(g),
+            r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-md5/angular-md5.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="app.js"></script>
+<script src="core.ctrl.js"></script>
+<script src="services/ser.auth.js"></script>
+<script src="states/landing/ctrl.landing.js"></script>
+<script src="states/auth/ctrl.auth.js"></script>
+<script src="states/post/ctrl.post.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
